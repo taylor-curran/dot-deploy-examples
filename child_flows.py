@@ -61,10 +61,11 @@ def child_flow_b(
         return {"b": "child flow b"}
 
 
-@flow(persist_result=True, result_storage=S3Bucket.load("result-storage"))
+@flow(persist_result=True, result_storage=S3Bucket.load("result-storage"), print_results=True)
 def child_flow_d(sleep_time=0):
     l = task_l.submit()
     time.sleep(sleep_time)
+    print("extra hiiiiii")
     o = task_o.submit()
     return {"d": "child flow d"}
 
